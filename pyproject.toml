@@ -1,0 +1,69 @@
+[project]
+name = "target-mirakl"
+version = "0.1.0"
+description = "`target-mirakl` is a Singer target for Mirakl, built with the Meltano SDK for Singer Targets."
+authors = [{ name = "Hotglue", email = "hello@hotglue.io" }]
+keywords = [
+    "ELT",
+    "mirakl",
+]
+license = "Apache-2.0"
+requires-python = "<3.11,>=3.7.1"
+dependencies = [
+    "requests>=2.25.1",
+    "hotglue-singer-sdk>=1.0.11",
+]
+
+[project.scripts]
+target-mirakl = 'target_mirakl.target:TargetMirakl.cli'
+
+[dependency-groups]
+dev = [
+    "pytest>=7",
+    "ruff>=0.15",
+]
+
+[tool.ruff]
+line-length = 100
+required-version = ">=0.15"
+
+[tool.ruff.lint]
+future-annotations = true
+ignore = [
+    "COM812",
+    "FIX002",
+    "TD002",
+    "TD003",
+]
+select = ["ALL"]
+
+[tool.ruff.lint.flake8-annotations]
+allow-star-arg-any = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+  "S101",
+  "D103",
+  "PLR2004",
+]
+"target_mirakl/client.py" = [
+    "ANN401",
+    "D102",
+    "I001",
+]
+"target_mirakl/sinks.py" = [
+    "D102",
+    "I001",
+    "TC002",
+]
+"target_mirakl/target.py" = [
+    "RUF012",
+    "I001",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[build-system]
+requires = ["poetry-core>=1.0.8"]
+build-backend = "poetry.core.masonry.api"

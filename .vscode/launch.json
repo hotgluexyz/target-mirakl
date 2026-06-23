@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "target-mirakl",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "../target_mirakl/target.py",
+            "cwd": "${workspaceFolder}/.secrets",
+            "args": [
+                "<",
+                "data.singer",
+                "--config",
+                "config.json",
+                ">",
+                "target_state.json"
+            ],
+            "python": "${workspaceFolder}/.venv/bin/python",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+    ]
+}
